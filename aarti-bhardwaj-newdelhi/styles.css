@@ -284,19 +284,6 @@ body.lb-open{overflow:hidden}
   .scroll-cue{display:none}
   .float-cta{display:block}
 }
-/* portfolio on small screens: native swipe row instead of the pinned scroll */
-@media (max-width:760px){
-  .pin{height:auto!important}
-  .pin-sticky{position:static;height:auto;display:block;padding:4.5rem 0 3.5rem}
-  .track{transform:none!important;overflow-x:auto;scroll-snap-type:x mandatory;padding-inline:1.25rem;gap:1.1rem;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .track::-webkit-scrollbar{display:none}
-  .panel{scroll-snap-align:start}
-  .panel.intro{width:78vw;align-self:flex-start}
-  .panel.outro{width:70vw}
-  .g-item .ph{height:auto;width:68vw;aspect-ratio:3/4}
-  .g-item img{width:100%;transform:none!important}
-  .pin-bar{display:none}
-}
 @media (max-width:620px){
   .form{grid-template-columns:1fr}
   .foot-in{grid-template-columns:1fr}
@@ -611,3 +598,15 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px soli
 .ribbon .rib-row{transform:none!important;padding-inline:clamp(1.2rem,6vw,4rem);will-change:auto}
 .arch{scroll-snap-align:center;user-select:none}
 .arch img{pointer-events:none;-webkit-user-drag:none}
+
+/* portfolio: title sits centred over the photos; the gallery moves only with vertical scroll (also on phones) */
+.pin-title{position:absolute;inset:0;z-index:3;display:grid;place-content:center;text-align:center;pointer-events:none;padding:0 1.25rem}
+.pin-title::before{content:"";position:absolute;left:50%;top:50%;width:min(92vw,820px);height:min(46vh,340px);transform:translate(-50%,-50%);background:radial-gradient(closest-side,rgba(20,12,10,.62),rgba(20,12,10,0));z-index:-1}
+.pin-title .eyebrow{color:var(--gold-l);margin-bottom:.8rem}
+.pin-title h2{color:#FBF3E4;font-size:clamp(2.6rem,7vw,5.6rem);line-height:1;text-shadow:0 4px 30px rgba(0,0,0,.55);max-width:11ch;margin-inline:auto}
+.track{touch-action:pan-y}
+.g-item .ph{height:min(66svh,620px)}
+.pin-sticky{touch-action:pan-y}
+#enquiryForm{scroll-margin-top:100px}
+@media (max-width:620px){.g-item .ph{height:min(64svh,520px)}.track{padding-inline:7vw;gap:1.1rem}.cap{font-size:.7rem}}
+@media (prefers-reduced-motion:reduce){.pin-title{position:relative;padding:4rem 1.25rem 1rem}.pin-title::before{display:none}}

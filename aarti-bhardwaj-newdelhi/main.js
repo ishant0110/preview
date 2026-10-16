@@ -5,7 +5,7 @@
   var $$ = function (s, r) { return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
   var clamp = function (v, a, b) { return Math.min(b, Math.max(a, v)); };
   var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-  var small = function () { return window.matchMedia("(max-width:760px)").matches; };
+  var small = function () { return false; };   // the scroll-driven gallery now runs on phones too
 
   /* ---------- header: solid after scroll, hides on scroll down ---------- */
   var header = $(".site-header"), lastY = 0;
@@ -250,7 +250,7 @@
       if (b.dataset.event) ev.value = b.dataset.event;
       sv.value = b.dataset.service;
       [ev, sv].forEach(function (el) { el.dispatchEvent(new Event("input", { bubbles: true })); var f = el.closest(".field"); if (f) { f.classList.add("picked"); setTimeout(function () { f.classList.remove("picked"); }, 1800); } });
-      $("#enquire").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      $("#enquiryForm").scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
       setTimeout(function () { $("#f-name").focus({ preventScroll: true }); }, reduce ? 0 : 700);
     });
   });
@@ -307,13 +307,6 @@
       if (e.key === "ArrowRight") { e.preventDefault(); window.scrollBy({ top: 260, behavior: "smooth" }); }
       else if (e.key === "ArrowLeft") { e.preventDefault(); window.scrollBy({ top: -260, behavior: "smooth" }); }
     });
-    var sx = null, sy = null;
-    pin.addEventListener("touchstart", function (e) { sx = e.touches[0].clientX; sy = e.touches[0].clientY; }, { passive: true });
-    pin.addEventListener("touchmove", function (e) {
-      if (small() || reduce || sx === null) return;
-      var dx = e.touches[0].clientX - sx, dy = e.touches[0].clientY - sy;
-      if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 6) { window.scrollBy(0, -dx); sx = e.touches[0].clientX; sy = e.touches[0].clientY; }
-    }, { passive: true });
   })();
 
   /* ---------- photo ribbon: moves only when you swipe / scroll sideways (and drag with the mouse) ---------- */
