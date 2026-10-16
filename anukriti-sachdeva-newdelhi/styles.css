@@ -603,3 +603,11 @@ input:focus-visible,select:focus-visible,textarea:focus-visible{outline:2px soli
   .to-top{width:52px;height:52px}
 }
 @supports (padding:max(0px)){.site-header{padding-top:env(safe-area-inset-top)}}
+
+/* ribbon: native sideways scroll only */
+.ribbon{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none;overscroll-behavior-x:contain;cursor:grab;scroll-snap-type:x proximity}
+.ribbon::-webkit-scrollbar{display:none}
+.ribbon.drag{cursor:grabbing;scroll-snap-type:none}
+.ribbon .rib-row{transform:none!important;padding-inline:clamp(1.2rem,6vw,4rem);will-change:auto}
+.arch{scroll-snap-align:center;user-select:none}
+.arch img{pointer-events:none;-webkit-user-drag:none}

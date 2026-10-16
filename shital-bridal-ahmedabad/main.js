@@ -77,7 +77,7 @@
       }
       // marquee rows move with scroll, in opposite directions
       var mr = marq.getBoundingClientRect();
-      if (mr.top < vh && mr.bottom > 0) {
+      if (!marq.classList.contains("ribbon") && mr.top < vh && mr.bottom > 0) {
         var p = (vh - mr.top);
         m1.style.transform = "translate3d(" + (-p * 0.35) + "px,0,0)";
         if (m2) m2.style.transform = "translate3d(" + (-(m2.scrollWidth - vw) + p * 0.35) + "px,0,0)";
@@ -314,5 +314,15 @@
       var dx = e.touches[0].clientX - sx, dy = e.touches[0].clientY - sy;
       if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 6) { window.scrollBy(0, -dx); sx = e.touches[0].clientX; sy = e.touches[0].clientY; }
     }, { passive: true });
+  })();
+
+  /* ---------- photo ribbon: moves only when you swipe / scroll sideways (and drag with the mouse) ---------- */
+  (function () {
+    var rb = $(".ribbon"); if (!rb) return;
+    var down = false, sx = 0, sl = 0, moved = false;
+    rb.addEventListener("pointerdown", function (e) { if (e.pointerType !== "mouse") return; down = true; moved = false; sx = e.clientX; sl = rb.scrollLeft; rb.classList.add("drag"); });
+    window.addEventListener("pointermove", function (e) { if (!down) return; var dx = e.clientX - sx; if (Math.abs(dx) > 3) moved = true; rb.scrollLeft = sl - dx; });
+    window.addEventListener("pointerup", function () { down = false; rb.classList.remove("drag"); });
+    rb.addEventListener("wheel", function (e) { if (e.shiftKey && !e.deltaX) { e.preventDefault(); rb.scrollLeft += e.deltaY; } }, { passive: false });
   })();
 })();
