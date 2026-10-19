@@ -1,0 +1,76 @@
+/* White variant: clean, minimal, elegant type. Loads after styles.css and overrides only what the dark theme hard-codes. */
+:root{
+  --bg:#ffffff;--bg2:#f6f4ef;--ink:#1c1b19;--mut:#6b675f;--line:rgba(28,27,25,.12);
+  --acc:#8a6d3b;--acc-d:#6f5730;
+  --disp:"Cormorant Garamond",Georgia,serif;--body:"Jost","Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --r:4px;
+}
+html{color-scheme:light}
+body{background:var(--bg);color:var(--ink);font-weight:400;letter-spacing:.01em}
+body::before{opacity:.035}
+h1,h2,h3{font-weight:500;letter-spacing:0}
+.lead{color:var(--mut);font-size:1.02rem}
+.eyebrow{color:var(--acc);font-weight:600}
+
+/* buttons: dark on white reads cleaner than gold */
+.btn{background:var(--ink);color:#fff;font-weight:500;letter-spacing:.06em}
+.btn:hover{background:#000;transform:translateY(-1px)}
+.btn:focus-visible{outline:3px solid var(--acc)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px rgba(28,27,25,.28)}
+.btn-ghost:hover{background:rgba(28,27,25,.05)}
+.btn.btn-sm,.hdr .btn-sm,.nav .btn-sm{color:#fff}
+.skip{color:#fff;background:var(--ink)}
+
+/* header + mobile nav */
+.hdr{background:linear-gradient(to bottom,rgba(255,255,255,.92),rgba(255,255,255,0))}
+.hdr.scrolled{background:rgba(255,255,255,.9)}
+.brand{font-weight:500}.brand em{color:var(--acc)}
+.nav a{font-weight:500;letter-spacing:.16em}
+.nav-btn span{background:var(--ink)}
+@media(max-width:860px){.nav{background:#fff;border-bottom:1px solid var(--line)}}
+
+/* hero: photo fades into white, dark text */
+.hero-bg img{filter:none}
+.hero-bg::after{background:linear-gradient(to top,rgba(255,255,255,.98) 0%,rgba(255,255,255,.86) 38%,rgba(255,255,255,.35) 70%,rgba(255,255,255,.05) 100%)}
+.rate-pill{background:rgba(255,255,255,.85);border-color:var(--line);color:var(--mut)}
+.rate-pill>b,.rate-pill .rp-txt b{color:var(--ink)}.rate-pill .stars{color:var(--acc)}
+.hero-foot{color:var(--mut)}
+
+/* quote strip over a photo */
+.strip img{filter:none}
+.strip::after{background:rgba(255,255,255,.78)}
+.strip p{color:var(--ink)}.strip em{color:var(--acc)}
+
+/* service cards */
+.cards li{background:#fff;border:1px solid var(--line)}
+.cards li:hover{background:var(--bg2)}
+.cards li>b{color:var(--acc)}
+
+/* packages + reviews + enquiry side */
+.sec-alt{background:var(--bg2)}
+.rev-score{background:#fff;border-color:var(--line)}
+.rev-score .stars{color:var(--acc)}
+.book-side{background:var(--bg2)}
+.book-side img{opacity:1}
+.book-cap{background:linear-gradient(to top,rgba(255,255,255,.96) 0%,rgba(255,255,255,.7) 45%,rgba(255,255,255,.1) 100%);color:var(--ink)}
+.book-cap p{color:var(--mut)}
+.book-cap li::before{color:var(--acc)}
+
+/* form controls */
+input,select,textarea{background:#fff;color:var(--ink);border-color:var(--line)}
+input:focus,select:focus,textarea:focus{outline:2px solid var(--acc);outline-offset:1px}
+.chip{border-color:rgba(28,27,25,.28);font-weight:500}
+.chip:hover{border-color:var(--ink)}
+.chip.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.status{background:var(--bg2);border-color:var(--line)}
+.status.bad{background:#fbf1f1;border-color:#e0b4b4}
+.err{color:#b4484a}
+.slides figcaption::before{background:var(--ink);color:#fff}
+.p-list li{border-color:var(--line)}
+.p-list li.on,.p-list li:hover{background:var(--bg2)}
+.p-list .pp{color:var(--ink)}.p-list .pp i{color:var(--mut)}.p-go{color:var(--acc)}
+
+/* footer, back to top, preview bar */
+.ftr{background:#fff}
+.to-top{background:var(--ink);color:#fff}
+.pv-bar{background:#f1efe9!important;color:#3c3a36!important;border-top:1px solid var(--line)}
