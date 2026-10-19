@@ -112,12 +112,12 @@
       if (bad) { say("<p>Please check the highlighted fields and try again.</p>", "bad"); bad.focus(); return; }
       submit.disabled = true; submit.textContent = "Sending…";
       var digits = v("phone").replace(/\D/g, ""); if (digits.length === 12 && digits.indexOf("91") === 0) digits = digits.slice(2);
-      var payload = { _subject: "[PREVIEW] Enquiry – House Of Rifaqat (" + v("event") + ", " + niceDate(v("date")) + ")", _captcha: "false", _template: "table", Name: v("name"), Mobile: digits, Occasion: v("event"), Service: v("service"), Date: niceDate(v("date")), Area: v("city"), Notes: ($("#f-notes") && $("#f-notes").value.trim()) || "-" };
+      var payload = { _subject: "[PREVIEW] Enquiry – House of Rifaqat (" + v("event") + ", " + niceDate(v("date")) + ")", _captcha: "false", _template: "table", Name: v("name"), Mobile: digits, Occasion: v("event"), Service: v("service"), Date: niceDate(v("date")), Area: v("city"), Notes: ($("#f-notes") && $("#f-notes").value.trim()) || "-" };
       fetch("https://formsubmit.co/ajax/" + MAIL_TO, { method: "POST", headers: { "Content-Type": "application/json", Accept: "application/json" }, body: JSON.stringify(payload) })
         .then(function (r) { return r.json(); }).catch(function () { })
         .then(function () {
           form.reset(); $$(".chip.on").forEach(function (c) { c.classList.remove("on"); });
-          say("<p><strong>Sent.</strong> Thank you, " + esc(payload.Name) + ". This is a preview, so the request went to Ishant, who made this sample. On the live site it goes straight to House Of Rifaqat.</p>", "ok");
+          say("<p><strong>Sent.</strong> Thank you, " + esc(payload.Name) + ". This is a preview, so the request went to Ishant, who made this sample. On the live site it goes straight to House of Rifaqat.</p>", "ok");
         })
         .then(function () { submit.disabled = false; submit.textContent = submitText; });
       statusBox.scrollIntoView({ block: "nearest", behavior: reduce ? "auto" : "smooth" });
